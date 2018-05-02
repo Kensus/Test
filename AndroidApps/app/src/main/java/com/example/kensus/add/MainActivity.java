@@ -12,7 +12,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText operand1;
     private EditText operand2;
     private TextView answer;
-    private Button  add;
+    private Button add;
+    private Button btnIncrease;
+    private Button btnDecrease;
+    private TextView tvValue;
+    int napTime = 0;
 
 
     @Override
@@ -22,15 +26,20 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         addition();
+        increaseValue();
+        decreaseValue();
+
 
     }
 
-    public void init(){
-
-        operand1 = (EditText)findViewById(R.id.etOperand1);
-        operand2 = (EditText)findViewById(R.id.etOperand2);
-        add      = (Button)findViewById(R.id.btnAdd);
-        answer   = (TextView)findViewById(R.id.tvAnswer);
+    public void init() {
+        operand1 = (EditText) findViewById(R.id.etOperand1);
+        operand2 = (EditText) findViewById(R.id.etOperand2);
+        add = (Button) findViewById(R.id.btnAdd);
+        answer = (TextView) findViewById(R.id.tvAnswer);
+        btnDecrease = (Button) findViewById(R.id.btnMinusValue);
+        btnIncrease = (Button) findViewById(R.id.btnAddValue);
+        tvValue = (TextView) findViewById(R.id.tvShowValue);
 
     }
 
@@ -41,14 +50,43 @@ public class MainActivity extends AppCompatActivity {
                 int number1 = Integer.parseInt(operand1.getText().toString());
                 int number2 = Integer.parseInt(operand2.getText().toString());
                 int sum = number1 + number2;
-               // answer.setText(" answer" + String.valueOf(sum));
+                // answer.setText(" answer" + String.valueOf(sum));
 
-                answer.setText(String.format(" answer %s",sum));
-
+                answer.setText(String.format(" answer %s", sum));
 
             }
         });
 
 
     }
+
+    public void increaseValue() {
+
+        btnIncrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                napTime = napTime + 1;
+                tvValue.setText(String.format("%s", napTime));
+            }
+        });
+
+
+    }
+
+    public void decreaseValue() {
+
+        btnDecrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                napTime = napTime - 1;
+                tvValue.setText(String.format("%s", napTime));
+
+
+            }
+        });
+
+    }
+
+
 }
